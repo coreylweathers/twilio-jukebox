@@ -1,0 +1,27 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-nav></app-nav>
+<section class="container" id="content">
+    <div class="row">
+        <div class="jumbotron">
+            <h1 class="display-3">Welcome to Silicon Valley Code Camp!</h1>
+            <hr class="my-4">
+            <p class="lead">To request a song, text the song name and artist to (669) 333 - SVCC  (7822)</p>
+            <p class="lead">Example: "Look What You Made Me Do by Taylor Swift"</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Now Playing</h2>
+            <p id="currentsongmsg" class="invisible">No song available</p>                                
+            <app-song-request id="currentSongRequest"
+                [request]="currentlyPlayingRequest"
+                (reject)="onRejectRequest($event);"
+                (play)="onPlayRequest($event);"></app-song-request>
+        </div>
+        <div class="col-md-6">
+            <h2>Currently in the Queue</h2>
+            <p id="emptysonglistmsg" class="invisible">No songs available</p>                    
+            <app-song-request-list [requestList]="fullRequestList"></app-song-request-list>
+        </div>
+    </div>
+</section>
