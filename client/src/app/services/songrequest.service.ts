@@ -2,23 +2,24 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { SongRequest } from './../classes/songrequest';
 import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SongRequestService {
-    private baseUri = 'https://requestfunction.azurewebsites.net';
+    private baseUri:String = 'http://localhost:7071';
+    private requests:SongRequest[] = [];
     constructor(private http: Http) {}
 
-    public requestlist: Array<SongRequest>;
-
     getAllRequests() {
-        return this.http.get(`${this.baseUri}/api/request`)
+        return this.http.get(`${this.baseUri}/api/spotifyqueue`)
             .map(response => {
-               return response.json().items;
+                return response.json();
             });
     }
 
     dequeue() {
-       return this.http.delete(`${this.baseUri}/api/delete`).map(response => {
+       return this.http.delete(`${this.baseUri}/api/delete`)
+       .map(response => {
         return ''; });
     }
 }

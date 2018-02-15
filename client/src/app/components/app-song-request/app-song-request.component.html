@@ -11,7 +11,7 @@
             <h4 class="card-title" [textContent]="request.songtitle"></h4>
             <h6>{{request.artistname}}</h6>
             
-            <ng-template [ngIf]="request.currentlyPlaying">            
+            <ng-template [ngIf]="request.currentlyplaying">            
                 <button id="nextTrackBtn" type="button" class="btn btn-dark" (click)="onPlay();">Next Track</button>
             </ng-template>
         </div>

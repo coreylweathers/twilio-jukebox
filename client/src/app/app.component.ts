@@ -11,16 +11,22 @@ import * as $ from 'jquery';
 export class AppComponent implements OnInit {
   public title = 'app';
   public currentlyPlayingRequest: SongRequest = new SongRequest('', '', '', true);
-  public fullRequestList: Array<SongRequest>;
+  public fullRequestList: SongRequest[];
 
   constructor(private songRequestService: SongRequestService) {
+    this.fullRequestList = [];
   }
 
   ngOnInit() {
     // GET THE LIST
     this.songRequestService.getAllRequests()
-      .subscribe(requests => {
-        this.fullRequestList = requests;
+      .subscribe(
+        (requests) => {
+          requests.forEach(element => {
+            this.fullRequestList.push
+            (new SongRequest(element["songTitle"], element["artistName"], element["artistImageUrl"], element["currentlyPlaying"]));
+          });
+          console.log(this.fullRequestList)
       },
       (err) => {
         console.error(`An error has occurred: ${err}`);
@@ -34,7 +40,7 @@ export class AppComponent implements OnInit {
           $('#currentsongmsg').removeClass('invisible').addClass('visible');
           $('#currentsongcard').remove('visible').addClass('invisible');
           } else {
-          this.processRequest(true);
+            this.processRequest(true);
         }
       }
     );
@@ -74,7 +80,7 @@ export class AppComponent implements OnInit {
   private setCurrentlyPlaying() {
     const request = this.fullRequestList.shift();
     console.log(request);
-    request.currentlyPlaying = true;
+    request.currentlyplaying = true;
     this.currentlyPlayingRequest = request;
   }
 }

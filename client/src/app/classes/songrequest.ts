@@ -4,5 +4,5 @@ export class SongRequest {
         public songtitle: string,
         public artistname: string,
         public artistimageurl: string,
-        public currentlyPlaying: boolean) {}
+        public currentlyplaying: boolean) {}
 }

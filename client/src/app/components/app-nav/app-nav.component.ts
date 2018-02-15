@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app-nav.component.css']
 })
 export class NavComponent {
-  title = 'Music by Twilio';
+  title = 'Twilio Jukebox';
 }
