@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class SVCCv2Page {
+export class TwilioJukeboxPage {
   navigateTo() {
     return browser.get('/');
   }

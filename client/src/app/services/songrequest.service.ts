@@ -1,25 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { SongRequest } from './../classes/songrequest';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SongRequestService {
-    private baseUri:String = 'http://localhost:7071';
-    private requests:SongRequest[] = [];
-    constructor(private http: Http) {}
+    private baseUri: String = 'http://localhost:7071';
+    private requests: SongRequest[] = [];
+    constructor(private http: HttpClient) {}
 
     getAllRequests() {
-        return this.http.get(`${this.baseUri}/api/spotifyqueue`)
+        console.log('getting all requests in teh playlist');
+        /*return this.http.get(`${this.baseUri}/api/spotifyqueue`)
             .map(response => {
-                return response.json();
-            });
+                return response;
+            });*/
     }
 
     dequeue() {
-       return this.http.delete(`${this.baseUri}/api/delete`)
+        console.log('Dequeing request');
+       /*return this.http.delete(`${this.baseUri}/api/delete`)
        .map(response => {
-        return ''; });
+        return ''; });*/
     }
 }

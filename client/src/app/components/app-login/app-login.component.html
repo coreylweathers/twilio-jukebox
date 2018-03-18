@@ -1,0 +1,2 @@
+<a *ngIf="spotify.isLoggedIn" class="nav-item nav-link active" routerLink="" (click)="spotify.logout()">Log Out of Spotify</a>
+<a *ngIf="!spotify.isLoggedIn" class="nav-item nav-link active" routerLink="" (click)="spotify.login()">Log In to Spotify</a>

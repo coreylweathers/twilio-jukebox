@@ -1,10 +1,10 @@
-import { SVCCv2Page } from './app.po';
+import { TwilioJukeboxPage } from './app.po';
 
-describe('svccv2 App', () => {
-  let page: SVCCv2Page;
+describe('Twilio Jukebox App', () => {
+  let page: TwilioJukeboxPage;
 
   beforeEach(() => {
-    page = new SVCCv2Page();
+    page = new TwilioJukeboxPage();
   });
 
   it('should display welcome message', () => {

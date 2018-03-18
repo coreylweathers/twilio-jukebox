@@ -1,0 +1,28 @@
+<section>
+    <div id="currentsongcard" class="card visible">
+        <div class="card-body">
+            <img 
+                class="d-flex rounded float-left img-thumbnail mr-3 {{request.artistname.length > 0 ? 'visible' : 'invisible'}}" 
+                width="100" 
+                height="100" 
+                [alt]="request.artistname" 
+                src="{{request.artistimageurl.length>0 ? request.artistimageurl : '/assets/interface-icon-sign-in.png'}}"
+                />
+            <h4 class="card-title" [textContent]="request.songtitle"></h4>
+            <h6>{{request.artistname}}</h6>    
+                 
+            <ng-template [ngIf]="request.currentlyplaying">            
+                <!--<button id="nextTrackBtn" type="button" class="btn btn-dark" (click)="onPlay();">Next Track</button>-->
+                <button id="pauseTrackBtn" type="button" (click)="onPause();" class="btn">
+                    <img src="/assets/pause-2.png" width="50" />   
+                </button>
+                <button id="playTrackBtn" type="button" (click)="onPlay();" class="btn">
+                    <img src="/assets/play-2.png" width="50" />  
+                </button>
+                <button id="playTrackBtn" type="button" (click)="onNext();" class="btn">
+                    <img src="/assets/next-2.png" width="50" />
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</section>
