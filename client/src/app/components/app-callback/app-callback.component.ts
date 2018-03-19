@@ -19,9 +19,9 @@ export class CallbackComponent implements OnInit {
     const response = this.spotify.getToken(code);
     if ( typeof response !==  'string') {
      (<Observable<Object>>response).subscribe((data) => {
-        localStorage.setItem('access_token', data['access_token']);
-        localStorage.setItem('refresh_token', data['refresh_token']);
-        this.spotify.isLoggedIn = true; });
+        sessionStorage.setItem('access_token', data['access_token']);
+        sessionStorage.setItem('refresh_token', data['refresh_token']);
+       });
       }
         this.router.navigateByUrl('/dashboard');
     }

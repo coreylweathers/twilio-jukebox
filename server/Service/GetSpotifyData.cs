@@ -25,8 +25,8 @@ namespace Service
             var track = await SelectSpotifyResult(json["request"].ToString(), config["Values:ClientId"], config["Values:ClientSecret"]  );
             var update = new
             {
-                track.Id,
-                track.Name
+               id = track.Id,
+               name = track.Name
             };
 
             var storageConnectionString = config["Values:AzureWebJobsStorage"];

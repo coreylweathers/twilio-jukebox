@@ -1,5 +1,6 @@
 import { Component, Input, Inject, OnInit, OnDestroy } from '@angular/core';
 import { SongRequest } from '../../classes/songrequest';
+import { SpotifyService } from '../../services/spotify.service';
 
 @Component({
   selector: 'app-current-song-request',
@@ -11,15 +12,15 @@ export class CurrentSongRequestComponent implements OnInit, OnDestroy {
     public player: Spotify.SpotifyPlayer;
     private token: string;
 
-    constructor(@Inject('Window') private window: Window) {
+    constructor(@Inject('Window') private window: Window,
+                private spotify: SpotifyService) {
     }
     ngOnInit() {
-        /*this.window.onSpotifyWebPlaybackSDKReady = () => {
-            this.token =
+      this.window.onSpotifyWebPlaybackSDKReady = () => {
+            this.token = <string>this.spotify.getToken();
             // tslint:disable-next-line:max-line-length
-            'BQANXil8Z-xc_xXen8-tsScMjVA9hWjpBliIIB4ORAb_2dPB6nyGFSblhJaqaT7Kpd2GYpa8z1OkgSDnsLqmYerfRoI2MX0cCmh7mmhbtSJOR4marHVpojAiUaESk_uU6cledtn7MOPpc3bkGbL_7Fku6hQSdVH-';
             this.player = new Spotify.Player({
-              name: 'Twilio Jukebox Spotify Player',
+              name: 'Twilio Jukebox',
               getOAuthToken: cb => { cb(this.token); }
             });
             // Error handling
@@ -36,17 +37,19 @@ export class CurrentSongRequestComponent implements OnInit, OnDestroy {
             });
             // Connect to the player!
             this.player.connect();
-          };*/
-    }
+          };
+        }
 
     ngOnDestroy() {
-      this.player.getCurrentState().then((state) => {
-        if (state) {
-          this.player.disconnect();
-        } else {
-          console.log(`The player isn't connected`);
-        }
-      });
+      if (this.player) {
+        this.player.getCurrentState().then((state) => {
+          if (state) {
+            this.player.disconnect();
+          } else {
+            console.log(`The player isn't connected`);
+          }
+        });
+      }
     }
 
     public onNext() {
